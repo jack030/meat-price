@@ -1,0 +1,14 @@
+# Optional: use this override when your EXISTING reverse proxy is in Docker.
+# The container then joins the proxy's existing shared Docker network.
+# Usage: PROXY_DOCKER_NETWORK=existing_network docker compose \
+#  -f compose.yaml -f deploy/compose.proxy-network.yaml up -d --build
+services:
+  meat-price:
+    networks:
+      - default
+      - existing_proxy
+
+networks:
+  existing_proxy:
+    external: true
+    name: ${PROXY_DOCKER_NETWORK}

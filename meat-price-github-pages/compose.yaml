@@ -1,0 +1,8 @@
+services:
+  meat-price:
+    build: .
+    restart: unless-stopped
+    # Localhost-only port: not public and not in conflict with host port 80/443.
+    # Set MEAT_PRICE_PORT=8099 if 8088 is already taken.
+    ports:
+      - "127.0.0.1:${MEAT_PRICE_PORT:-8088}:80"
